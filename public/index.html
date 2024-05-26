@@ -30,19 +30,19 @@
   <h1> Level One </h1>
   <a id=1 href="level/1">
   <img class="button"
-       src="https://scoresensei.vercel.app/playbutton.png" width="150" height="150" id=1></img>
+       src="https://scoresensei.vercel.app/images/playbutton.png" width="150" height="150" id=1></img>
   </a>
     <h1 id=1> The Basics </h1>
 <br>
   <h1> Level Two </h1>
   <a id=2 href="level/2">
-  <img class=button src="https://scoresensei.vercel.app/playbutton.png" width="150" height="150" id=2></img>
+  <img class=button src="https://scoresensei.vercel.app/images/playbutton.png" width="150" height="150" id=2></img>
   </a>
     <h1 id=2> New Notes </h1>
 <br>
   <h1> Level Three </h1>
   <a id=3 href="level/3">
-  <img class=button src="https://scoresensei.vercel.app/playbutton.png" width="150" height="150" id=3></img>
+  <img class=button src="https://scoresensei.vercel.app/images/playbutton.png" width="150" height="150" id=3></img>
 </a>
   <h1 id=3> Sharp Notes </h1>
 
@@ -73,10 +73,10 @@ document.querySelectorAll("a").forEach((element)=>{
   document.querySelectorAll("img").forEach((element)=>{
   
   if(element.id < level && element.id != 0){
-    element.src = "https://scoresensei.vercel.app/completebutton.png";
+    element.src = "https://scoresensei.vercel.app/images/completebutton.png";
   } else if (element.id > level && element.id != 0){
     element.src =
- "https://scoresensei.vercel.app/redbutton.png"
+ "https://scoresensei.vercel.app/images/redbutton.png"
   }
     
 })
