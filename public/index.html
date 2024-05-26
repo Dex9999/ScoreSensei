@@ -33,7 +33,7 @@
 </head>
   <body>
     <div id="home">
-</html><img class=wlcm src="/images/scoresensei.png" width="50" height="50" id=2> <h1 class=ttl> Welcome to Score Sensei! </t> </img>
+</html><img class=wlcm src="/images/scoresensei.png" width="50" height="50"> <h1 class=ttl> Welcome to Score Sensei! </t> </img>
 <div id="app"></div>
 <br>
   <h1> Level One </h1>
@@ -74,6 +74,7 @@ async function load(){
   if(!level){
     console.log("set");
     document.cookie = "level=1;"
+    level = 1;
   }
   document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
 
