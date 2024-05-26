@@ -151,7 +151,8 @@ load();
 async function startLevel(lvl){
   document.getElementById("home").style.display = "none";
   document.getElementById("game").style.display = "block";
-  document.getElementById("image").src = "https://scoresensei.vercel.app/public/"+lvl+".png"
+
+  document.getElementById("image").src = "https://scoresensei.vercel.app/public/"+((lvl == 1) ? "1-1" : lvl)+".png"
   go(lvl);
 }
 async function home(){
