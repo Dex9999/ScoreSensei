@@ -20,19 +20,20 @@ app.use((req, res, next) => {
 //   next();
 // });
 
+async function checkPageForLink(req, res) {
+  const url = req.url;
+  if (url === '/level/1' ||url === '/level/2' ||url === '/level/3'){
+    const html = fs.readFileSync('public/level.html', 'utf8');
+    res.send(html);
+  } else{
+    const html = fs.readFileSync('public/index.html', 'utf8');
+    res.send(html);
+}
 //for any path give index.html (doesn't work?)
+app.get('*', checkPageForLink);
+  
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/level.html'));
-});
-
-app.get('/level/1', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/level.html'));
-});
-app.get('/level/2', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/level.html'));
-});
-app.get('/level/3', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/level.html'));
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.listen(port, () => {
