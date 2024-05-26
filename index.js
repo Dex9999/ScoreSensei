@@ -22,17 +22,17 @@ app.use((req, res, next) => {
 
 //for any path give index.html (doesn't work?)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.get('/level/1', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/level.html'));
+  res.sendFile(path.join(__dirname, '/public/level.html'));
 });
 app.get('/level/2', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/level.html'));
+  res.sendFile(path.join(__dirname, '/public/level.html'));
 });
 app.get('/level/3', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/level.html'));
+  res.sendFile(path.join(__dirname, '/public/level.html'));
 });
 
 app.listen(port, () => {
