@@ -139,7 +139,6 @@ async function home(){
   load();
 }
 
-async function go(){
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var startTime = 0;
@@ -165,7 +164,7 @@ var detectorElem,
 	detuneElem,
 	detuneAmount;
 
-function() {
+window.onload = function() {
 	audioContext = new AudioContext();
 	MAX_SIZE = Math.max(4,Math.floor(audioContext.sampleRate/5000));	// corresponds to a 5kHz signal
 
@@ -404,7 +403,7 @@ function updatePitch( time ) {
   }
 }
 
-}
+
   
   
 </script>
