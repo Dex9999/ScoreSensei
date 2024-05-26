@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>Score Sensei</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
+  <link rel="manifest" href="/public/site.webmanifest">
   
   <style>
   body {
@@ -79,15 +79,15 @@
   <div id="game" style="display: none;">
     <div class="home" style="margin-top: 100px">
       <a href="default.asp">
-        <img src="https://scoresensei.vercel.app/logo.png" alt="Logo" style="width:70px;height:70px;" class="center" />
+        <img src="https://scoresensei.vercel.app/images/scoresensei.png" alt="Logo" style="width:70px;height:70px;" class="center">
       </a>
     </div>
-    <p>yo<button onclick="startPitchDetect();" class="modern-button">Start</button></p>
+    <p><button onclick="startPitchDetect();" class="modern-button">Start</button></p>
     <div id="detector" class="vague">
-      <div class="pitch"><span id="pitch"></span></div>
+      <div class="pitch" style="display: none;"><span id="pitch"></span></div>
       <div class="note"><span id="note"></span></div>   
       <canvas id="output" width="300" height="42"></canvas>
-      <div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+      <div id="detune" style="display: none;"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
     </div>
   </div>
 <script>
