@@ -1,1 +1,104 @@
-f
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  body {
+  font-family: system-ui;
+  background: #1cb0f6;
+  color: white;
+  text-align: center;
+  transform: translate(0px, -75px);
+}
+
+.button{
+  filter: drop-shadow(10px 10px 10px #0f0f4f);
+}
+
+.wlcm{
+  transform: translate(-230px, 80px);
+}
+
+.ttl{
+  transform: translate(30px, 0px);
+}
+</style>
+</head>
+  <body>
+</html><img class=wlcm src="https://scoresensei.vercel.app/images/scoresensei.png" width="50" height="50" id=2> <h1 class=ttl> Welcome to Score Sensei! </t> </img>
+<div id="app"></div>
+<br>
+  <h1> Level One </h1>
+  <a id=1 href="level/1">
+  <img class="button"
+       src="https://scoresensei.vercel.app/playbutton.png" width="150" height="150" id=1></img>
+  </a>
+    <h1 id=1> The Basics </h1>
+<br>
+  <h1> Level Two </h1>
+  <a id=2 href="level/2">
+  <img class=button src="https://scoresensei.vercel.app/playbutton.png" width="150" height="150" id=2></img>
+  </a>
+    <h1 id=2> New Notes </h1>
+<br>
+  <h1> Level Three </h1>
+  <a id=3 href="level/3">
+  <img class=button src="https://scoresensei.vercel.app/playbutton.png" width="150" height="150" id=3></img>
+</a>
+  <h1 id=3> Sharp Notes </h1>
+
+<script>
+  async function load(){
+  document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
+
+document.cookie = "level=2";
+
+let level = 2;
+console.log(level);
+
+document.querySelectorAll("h1").forEach((element)=>{
+  
+  if(element.id < level && element.id != 0){
+    element.innerText += " Completed";
+    element.style.color = "#2df412";
+  }
+})
+
+document.querySelectorAll("a").forEach((element)=>{
+  
+  if(element.id > level && element.id != 0){
+    element.href = "/";
+  }
+})
+
+  document.querySelectorAll("img").forEach((element)=>{
+  
+  if(element.id < level && element.id != 0){
+    element.src = "https://scoresensei.vercel.app/completebutton.png";
+  } else if (element.id > level && element.id != 0){
+    element.src =
+ "https://scoresensei.vercel.app/redbutton.png"
+  }
+    
+})
+
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+}
+load();
+</script>
+</body>
+</html>
