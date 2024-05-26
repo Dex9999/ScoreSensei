@@ -33,45 +33,43 @@
 </head>
   <body>
     <div id="home">
-</html><img class=wlcm src="/images/scoresensei.png" width="50" height="50"> <h1 class=ttl> Welcome to Score Sensei! </t> </img>
-<div id="app"></div>
-<br>
-  <h1> Level One </h1>
-  <a id=1 href="#level1" onclick="startLevel()">
-  <img class="button"
-       src="/images/playbutton.png" width="150" height="150" id=1></img>
-  </a>
-    <h1 id=1> The Basics </h1>
-<br>
-  <h1> Level Two </h1>
-  <a id=2 href="#level2" onclick="startLevel()">
-  <img class=button src="/images/playbutton.png" width="150" height="150" id=2></img>
-  </a>
-    <h1 id=2> New Notes </h1>
-<br>
-  <h1> Level Three </h1>
-  <a id=3 href="#level3" onclick="startLevel()">
-  <img class=button src="/images/playbutton.png" width="150" height="150" id=3></img>
-</a>
-  <h1 id=3> Sharp Notes </h1>
-</div>
-    
-<div id="game" style="display: none;">
-  <div class="home">
-      <a href="default.asp" ><img src="https://scoresensei.vercel.app/logo.png" alt="Logo" style="width:70px;height:70px;" class="center"></a>
+    <img class="wlcm" src="/images/scoresensei.png" width="50" height="50" />
+    <h1 class="ttl">Welcome to Score Sensei!</h1>
+    <div id="app"></div>
+    <br>
+    <h1>Level One</h1>
+    <a id="1" href="#level1" onclick="startLevel()">
+      <img class="button" src="/images/playbutton.png" width="150" height="150" id="1" />
+    </a>
+    <h1 id="1">The Basics</h1>
+    <br>
+    <h1>Level Two</h1>
+    <a id="2" href="#level2" onclick="startLevel()">
+      <img class="button" src="/images/playbutton.png" width="150" height="150" id="2" />
+    </a>
+    <h1 id="2">New Notes</h1>
+    <br>
+    <h1>Level Three</h1>
+    <a id="3" href="#level3" onclick="startLevel()">
+      <img class="button" src="/images/playbutton.png" width="150" height="150" id="3" />
+    </a>
+    <h1 id="3">Sharp Notes</h1>
   </div>
   
-<!--   <div id="score"> -->
-      <p>yo<button onclick="startPitchDetect();">Start</button></p>
-
-		<div id="detector" class="vague">
-			<div class="pitch"><span id="pitch"></span></div>
-			<div class="note"><span id="note"></span></div>   
-			<canvas id="output" width=300 height=42></canvas>
-			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
-		</div>
-<!--   </div> -->
-</div>
+  <div id="game" style="display: none;">
+    <div class="home">
+      <a href="default.asp">
+        <img src="https://scoresensei.vercel.app/logo.png" alt="Logo" style="width:70px;height:70px;" class="center" />
+      </a>
+    </div>
+    <p>yo<button onclick="startPitchDetect();">Start</button></p>
+    <div id="detector" class="vague">
+      <div class="pitch"><span id="pitch"></span></div>
+      <div class="note"><span id="note"></span></div>   
+      <canvas id="output" width="300" height="42"></canvas>
+      <div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+    </div>
+  </div>
 <script>
 async function load(){
   let level = getCookie("level");
