@@ -4,6 +4,7 @@
   "builds":[
     {"src":"index.js","use":"@now/node"},
     {"src":"images/**/*","use":"@now/static"},
-    {"src":"public/**/*","use":"@now/static"}
+    {"src":"public/**/*","use":"@now/static"},
+    {"src":"public/level.html","use":"@now/static"}
   ]
 }
