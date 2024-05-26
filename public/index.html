@@ -167,6 +167,7 @@ var startTime = 0;
 var timeDif = 0;
 var notePlayed = false;
 var currentNote = 0;
+	let levl = 1;
 
 const notesOne = ["G", "G", "G", "G"];
 const notesTwo = ["G", "A", "G", "B"];
@@ -412,7 +413,7 @@ function updatePitch( time ) {
       return false;
     }
   }
-	let levl = 1;
+	
   //notePlayed = playNote("C", 50);
   if(window.location.href.split("#") == "level2"){
 	  notes = notesTwo;
@@ -437,26 +438,26 @@ function updatePitch( time ) {
     else return 0;
   }
   if(currentNote > notes.length-1){
-  	if(levl >= getCookie("level")){
+  	if(levl == getCookie("level")){
 		document.cookie = "level="+(levl+1)+";";
 		console.log(document.cookie);
 	}
   }
 	function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
+	  let name = cname + "=";
+	  let decodedCookie = decodeURIComponent(document.cookie);
+	  let ca = decodedCookie.split(';');
+	  for(let i = 0; i <ca.length; i++) {
+	    let c = ca[i];
+	    while (c.charAt(0) == ' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+	}
 }
 
 
