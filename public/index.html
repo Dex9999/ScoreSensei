@@ -131,6 +131,7 @@ load();
 async function startLevel(){
   document.getElementById("home").style.display = "none";
   document.getElementById("game").style.display = "block";
+  go();
 }
 async function home(){
   document.getElementById("game").style.display = "block";
@@ -163,7 +164,7 @@ var detectorElem,
 	detuneElem,
 	detuneAmount;
 
-window.onload = function() {
+function go() {
 	audioContext = new AudioContext();
 	MAX_SIZE = Math.max(4,Math.floor(audioContext.sampleRate/5000));	// corresponds to a 5kHz signal
 
