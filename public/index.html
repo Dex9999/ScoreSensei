@@ -36,20 +36,20 @@
 <div id="app"></div>
 <br>
   <h1> Level One </h1>
-  <a id=1 href="level/1">
+  <a id=1 href="#level1">
   <img class="button"
        src="/images/playbutton.png" width="150" height="150" id=1></img>
   </a>
     <h1 id=1> The Basics </h1>
 <br>
   <h1> Level Two </h1>
-  <a id=2 href="level/2">
+  <a id=2 href="#level2">
   <img class=button src="/images/playbutton.png" width="150" height="150" id=2></img>
   </a>
     <h1 id=2> New Notes </h1>
 <br>
   <h1> Level Three </h1>
-  <a id=3 href="level/3">
+  <a id=3 href="#level3">
   <img class=button src="/images/playbutton.png" width="150" height="150" id=3></img>
 </a>
   <h1 id=3> Sharp Notes </h1>
@@ -107,6 +107,9 @@ function getCookie(cname) {
 }
 }
 load();
+
+window.location.href.split("/");
+  
 </script>
 </body>
 </html>
