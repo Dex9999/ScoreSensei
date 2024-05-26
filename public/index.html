@@ -412,13 +412,17 @@ function updatePitch( time ) {
       return false;
     }
   }
+	let levl = 1;
   //notePlayed = playNote("C", 50);
   if(window.location.href.split("#") == "level2"){
 	  notes = notesTwo;
+	  levl = 2;
   } else if(window.location.href.split("#") == "level3"){
 	  notes = notesThree;
+	  levl = 3;
   } else {
 	  notes = notesOne;
+	levl = 1;
   }
   
   currentNote += levelMap(notes, tempo, currentNote);
@@ -433,8 +437,8 @@ function updatePitch( time ) {
     else return 0;
   }
   if(currentNote > notes.length-1){
-  	if(lvl >= getCookie("level")){
-		document.cookie = "level="+(lvl+1)+";";
+  	if(levl >= getCookie("level")){
+		document.cookie = "level="+(levl+1)+";";
 	}
   }
 }
