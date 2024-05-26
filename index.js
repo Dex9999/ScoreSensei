@@ -7,6 +7,10 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(path.join(__dirname + '/images')));
 console.log(path.join(__dirname + '/public'));
+app.use((req, res, next) => {
+  console.log(`${req.method} request for '${req.url}'`);
+  next();
+});
 
 //redirect path to hash
 // app.use((req, res, next) => {
