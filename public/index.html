@@ -77,7 +77,7 @@
   
   <div id="game" style="display: none;">
     <div class="home" style="margin-top: 100px">
-      <a href="default.asp">
+      <a href="/">
         <img src="https://scoresensei.vercel.app/images/scoresensei.png" alt="Logo" style="width:70px;height:70px;" class="center">
       </a>
     </div>
@@ -168,8 +168,10 @@ var timeDif = 0;
 var notePlayed = false;
 var currentNote = 0;
 
-const notesOne = ["C", "B", "A", "C"];
-const tempoOne = [250, 250, 250, 250];
+const notesOne = ["G", "G", "G", "G"];
+const notesTwo = ["G", "A", "G", "B"];
+const notesThree = ["G", "G#", "A", "A#"];
+const tempo = [250, 250, 250, 250];
 
 var audioContext = null;
 var isPlaying = false;
@@ -411,8 +413,15 @@ function updatePitch( time ) {
     }
   }
   //notePlayed = playNote("C", 50);
+  if(window.location.href.split("#") == "level2"){
+	  notes = notesTwo;
+  } else if(window.location.href.split("#") == "level3"){
+	  notes = notesThree;
+  } else (window.location.href.split("#") == "level1"){
+	  notes = notesOne;
+  }
   
-  currentNote += levelMap(notesOne, tempoOne, currentNote);
+  currentNote += levelMap(notes, tempo, currentNote);
   
   function levelMap(notes, tempo, currentNote)
   {
@@ -422,6 +431,11 @@ function updatePitch( time ) {
         return 1;
         }
     else return 0;
+  }
+  if(currentNote > notes.length-1){
+  	if(lvl >= getCookie("level"){
+		document.cookie = "level="lvl+1+";";
+	}
   }
 }
 
