@@ -32,28 +32,41 @@
   
 </head>
   <body>
+    <div id="home">
 </html><img class=wlcm src="/images/scoresensei.png" width="50" height="50" id=2> <h1 class=ttl> Welcome to Score Sensei! </t> </img>
 <div id="app"></div>
 <br>
   <h1> Level One </h1>
-  <a id=1 href="#level1">
+  <a id=1 href="#level1" onclick="startLevel()">
   <img class="button"
        src="/images/playbutton.png" width="150" height="150" id=1></img>
   </a>
     <h1 id=1> The Basics </h1>
 <br>
   <h1> Level Two </h1>
-  <a id=2 href="#level2">
+  <a id=2 href="#level2" onclick="startLevel()">
   <img class=button src="/images/playbutton.png" width="150" height="150" id=2></img>
   </a>
     <h1 id=2> New Notes </h1>
 <br>
   <h1> Level Three </h1>
-  <a id=3 href="#level3">
+  <a id=3 href="#level3" onclick="startLevel()">
   <img class=button src="/images/playbutton.png" width="150" height="150" id=3></img>
 </a>
   <h1 id=3> Sharp Notes </h1>
-
+</div>
+    
+<div id="game" style="display: none;">
+  <div class="home">
+      <a href="default.asp" ><img src="https://scoresensei.vercel.app/logo.png" alt="Logo" style="width:70px;height:70px;" class="center"></a>
+  </div>
+  
+  <div id="score">
+      <canvas id="canvas">
+        
+      </canvas>
+  </div>
+</div>
 <script>
   async function load(){
   document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
@@ -74,7 +87,8 @@ document.querySelectorAll("h1").forEach((element)=>{
 document.querySelectorAll("a").forEach((element)=>{
   
   if(element.id > level && element.id != 0){
-    element.href = "/";
+    element.href = "#";
+    element.onclick = "";
   }
 })
 
@@ -87,9 +101,13 @@ document.querySelectorAll("a").forEach((element)=>{
  "/images/redbutton.png"
   }
     
-})
-
-
+})  
+let level = getCookie("level");
+    console.log(level);
+if(!level){
+  console.log("set");
+  document.cookie = "level=1;"
+}
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -108,7 +126,15 @@ function getCookie(cname) {
 }
 load();
 
-window.location.href.split("/");
+async function startLevel(){
+  document.getElementById("home").style.display = "none";
+  document.getElementById("game").style.display = "block";
+}
+async function home(){
+  document.getElementById("game").style.display = "block";
+  document.getElementById("home").style.display = "none";
+  load();
+}
   
 </script>
 </body>
