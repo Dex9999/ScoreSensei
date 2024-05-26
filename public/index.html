@@ -434,7 +434,7 @@ function updatePitch( time ) {
   }
   if(currentNote > notes.length-1){
   	if(lvl >= getCookie("level")){
-		document.cookie = "level="lvl+1+";";
+		document.cookie = "level="+(lvl+1)+";";
 	}
   }
 }
