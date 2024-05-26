@@ -1,15 +1,9 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ]
+  "version":2,
+  "name":"express-with-static-image-folder",
+  "builds":[
+    {"src":"index.js","use":"@now/node"},
+    {"src":"images/**/*","use":"@now/static"},
+      {"src":"public/**/*","use":"@now/static"}
+  ]
 }
