@@ -68,7 +68,13 @@
   </div>
 </div>
 <script>
-  async function load(){
+async function load(){
+  let level = getCookie("level");
+  console.log(level);
+  if(!level){
+    console.log("set");
+    document.cookie = "level=1;"
+  }
   document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
 
 document.querySelectorAll("h1").forEach((element)=>{
@@ -97,12 +103,7 @@ document.querySelectorAll("a").forEach((element)=>{
   }
     
 })  
-let level = getCookie("level");
-    console.log(level);
-if(!level){
-  console.log("set");
-  document.cookie = "level=1;"
-}
+
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
