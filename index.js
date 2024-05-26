@@ -23,10 +23,10 @@ app.use((req, res, next) => {
 async function checkPageForLink(req, res) {
   const url = req.url;
   if (url === '/level/1' ||url === '/level/2' ||url === '/level/3'){
-    const html = fs.readFileSync('public/level.html', 'utf8');
+    const html = fs.readFileSync('/public/level.html', 'utf8');
     res.send(html);
   } else{
-    const html = fs.readFileSync('public/index.html', 'utf8');
+    const html = fs.readFileSync('/public/index.html', 'utf8');
     res.send(html);
   }
 }
