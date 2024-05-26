@@ -28,6 +28,26 @@
 .ttl{
   transform: translate(30px, 0px);
 }
+.modern-button {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+
+  .modern-button:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .modern-button:active {
+    transform: scale(1);
+  }
 </style>
   
 </head>
@@ -62,7 +82,7 @@
         <img src="https://scoresensei.vercel.app/logo.png" alt="Logo" style="width:70px;height:70px;" class="center" />
       </a>
     </div>
-    <p>yo<button onclick="startPitchDetect();">Start</button></p>
+    <p>yo<button onclick="startPitchDetect();" class="modern-button">Start</button></p>
     <div id="detector" class="vague">
       <div class="pitch"><span id="pitch"></span></div>
       <div class="note"><span id="note"></span></div>   
