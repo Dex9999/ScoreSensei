@@ -21,13 +21,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/level/1', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/level1.html'));
+  res.sendFile(path.join(__dirname, 'public/level.html'));
 });
 app.get('/level/2', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/level2.html'));
+  res.sendFile(path.join(__dirname, 'public/level.html'));
 });
 app.get('/level/3', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/level3.html'));
+  res.sendFile(path.join(__dirname, 'public/level.html'));
 });
 
 app.listen(port, () => {
