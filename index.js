@@ -28,6 +28,7 @@ async function checkPageForLink(req, res) {
   } else{
     const html = fs.readFileSync('public/index.html', 'utf8');
     res.send(html);
+  }
 }
 //for any path give index.html (doesn't work?)
 app.get('*', checkPageForLink);
