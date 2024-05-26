@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/Dex9999/ScoreSensei#readme",
   "dependencies": {
-    "express": "^4.18.2",
+    "express": "^4.18.2"
   },
 }
