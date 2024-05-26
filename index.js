@@ -14,17 +14,17 @@ app.use((req, res, next) => {
   next();
 });
 
-function checkPageForLink(req, res, next) {
-  const url = req.url;
-  if (url === '/level/1' || url === '/level/2' || url === '/level/3') {
-    res.sendFile(path.join(__dirname, 'public', 'level.html'));
-  } else {
-    next(); // Pass control to the next middleware
-  }
-}
+// function checkPageForLink(req, res, next) {
+//   const url = req.url;
+//   if (url === '/level/1' || url === '/level/2' || url === '/level/3') {
+//     res.sendFile(path.join(__dirname, 'public', 'level.html'));
+//   } else {
+//     next(); // Pass control to the next middleware
+//   }
+// }
 
 // Catch-all route for serving index.html
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
