@@ -1,3 +1,5 @@
+"use client";
+
 export default function Game({ startPitchDetect }) {
   return (
     <div id="game" style={{ display: "none" }}>
