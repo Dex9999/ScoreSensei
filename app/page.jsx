@@ -13,24 +13,29 @@ const DynamicHome = dynamic(() => import("./components/Home"), { ssr: false });
 const DynamicGame = dynamic(() => import("./components/Game"), { ssr: false });
 
 export default function Page() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleRouteChange = (url) => {
-        const level = url.split("/").pop();
-        if (level) {
-          startLevel(parseInt(level));
-        }
-      };
-
-      router.events.on("routeChangeComplete", handleRouteChange);
-
-      return () => {
-        router.events.off("routeChangeComplete", handleRouteChange);
-      };
+    const level = pathname.split("/").pop();
+    if (level) {
+      startLevel(parseInt(level));
     }
-  }, [router.events]);
+
+    const handleRouteChange = () => {
+      const newLevel = pathname.split("/").pop();
+      if (newLevel) {
+        startLevel(parseInt(newLevel));
+      }
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [pathname, router]);
 
   async function startLevel(lvl) {
     document.getElementById("home").style.display = "none";
