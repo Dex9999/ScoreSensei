@@ -9,8 +9,8 @@ import { getCookie, setLevel } from "./utils";
 import { updatePitch } from "./pitchDetection";
 
 // Dynamically import components with no SSR
-const DynamicHome = dynamic(() => import("../components/Home"), { ssr: false });
-const DynamicGame = dynamic(() => import("../components/Game"), { ssr: false });
+const DynamicHome = dynamic(() => import("./components/Home"), { ssr: false });
+const DynamicGame = dynamic(() => import("./components/Game"), { ssr: false });
 
 export default function Page() {
   const router = useRouter();
