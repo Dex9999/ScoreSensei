@@ -377,7 +377,7 @@ export default function Home() {
           <a id="1" href="#level1" onClick={() => startLevel(1)}>
             <img
               className="button"
-              src="/images/playbutton.png"
+              src="/playbutton.png"
               width="150"
               height="150"
               id="1"
@@ -390,7 +390,7 @@ export default function Home() {
           <a id="2" href="#level2" onClick={() => startLevel(2)}>
             <img
               className="button"
-              src="/images/playbutton.png"
+              src="/playbutton.png"
               width="150"
               height="150"
               id="1"
@@ -403,7 +403,7 @@ export default function Home() {
           <a id="3" href="#level3" onClick={() => startLevel(3)}>
             <img
               className="button"
-              src="/images/playbutton.png"
+              src="/playbutton.png"
               width="150"
               height="150"
               id="1"
