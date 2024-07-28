@@ -2,6 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
+	<main>
     <div id="home">
 <!--     <img class="wlcm" src="/images/scoresensei.png" width="50" height="50" /> -->
     <h1 class="ttl" style="margin-top: 100px">Welcome to Score Sensei!</h1>
@@ -415,5 +416,6 @@ function updatePitch( time ) {
   
   
 </script>
+	</main>
   );
 }
