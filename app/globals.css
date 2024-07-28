@@ -15,19 +15,45 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+/* styles/globals.css */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: system-ui;
+  background: #1cb0f6;
+  color: white;
+  text-align: center;
+  transform: translate(0px, -75px);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.button {
+  filter: drop-shadow(10px 10px 10px #0f0f4f);
 }
+
+.wlcm {
+  transform: translate(-230px, 80px);
+}
+
+.ttl {
+  transform: translate(30px, 0px);
+}
+
+.modern-button {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.modern-button:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.05);
+}
+
+.modern-button:active {
+  transform: scale(1);
+}
+
