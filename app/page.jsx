@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Home from "./components/Home";
@@ -65,12 +65,10 @@ export default function Page() {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
       <div>
         <Home startLevel={startLevel} />
         <Game startPitchDetect={startPitchDetect} />
       </div>
-    </Suspense>
     </>
   );
 }
