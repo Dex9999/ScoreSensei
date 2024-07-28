@@ -2,112 +2,418 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div id="home">
+<!--     <img class="wlcm" src="/images/scoresensei.png" width="50" height="50" /> -->
+    <h1 class="ttl" style="margin-top: 100px">Welcome to Score Sensei!</h1>
+    <div id="app"></div>
+    <h1>Level One</h1>
+    <a id="1" href="#level1" onclick="startLevel(1)">
+      <img class="button" src="/images/playbutton.png" width="150" height="150" id="1" />
+    </a>
+    <h1 id="1">The Basics</h1>
+    <br>
+    <h1>Level Two</h1>
+    <a id="2" href="#level2" onclick="startLevel(2)">
+      <img class="button" src="/images/playbutton.png" width="150" height="150" id="2" />
+    </a>
+    <h1 id="2">New Notes</h1>
+    <br>
+    <h1>Level Three</h1>
+    <a id="3" href="#level3" onclick="startLevel(3)">
+      <img class="button" src="/images/playbutton.png" width="150" height="150" id="3" />
+    </a>
+    <h1 id="3">Sharp Notes</h1>
+  </div>
+  
+  <div id="game" style="display: none;">
+    <div class="home" style="margin-top: 100px">
+      <a href="/">
+        <img src="https://scoresensei.vercel.app/images/scoresensei.png" alt="Logo" style="width:70px;height:70px;" class="center">
+      </a>
+    </div>
+    <p><button onclick="startPitchDetect();" class="modern-button">Start</button></p>
+    <div id="detector" class="vague">
+      <div class="pitch" style="display: none;"><span id="pitch"></span></div>
+      <p>Your Note:</p>
+      <div class="note"><span id="note"></span></div>   
+      <canvas id="output" width="300" height="42"></canvas>
+      <div id="detune" style="display: none;"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+    </div>
+    <img src="" id="image"></img>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+  </div>
+<script>
+async function load(){
+  let level = getCookie("level");
+  console.log(level);
+  if(!level){
+    console.log("set");
+    document.cookie = "level=1;"
+    level = 1;
+  }
+  document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+document.querySelectorAll("h1").forEach((element)=>{
+  
+  if(element.id < level && element.id != 0){
+    element.innerText += " Completed";
+    element.style.color = "#2df412";
+  }
+})
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+document.querySelectorAll("a").forEach((element)=>{
+  
+  if(element.id > level && element.id != 0){
+    element.href = "#";
+    element.onclick = "";
+  }
+})
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+  document.querySelectorAll("img").forEach((element)=>{
+  
+  if(element.id < level && element.id != 0){
+    element.src = "/images/completebutton.png";
+  } else if (element.id > level && element.id != 0){
+    element.src =
+ "/images/redbutton.png"
+  }
+    
+})  
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+}
+load();
+
+async function startLevel(lvl){
+  document.getElementById("home").style.display = "none";
+  document.getElementById("game").style.display = "block";
+
+  document.getElementById("image").src = "https://scoresensei.vercel.app/public/"+((lvl == 1) ? "1-1" : lvl)+".png"
+  go(lvl);
+}
+async function home(){
+  document.getElementById("game").style.display = "block";
+  document.getElementById("home").style.display = "none";
+  load();
+}
+
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+var startTime = 0;
+var timeDif = 0;
+var notePlayed = false;
+var currentNote = 0;
+	let levl = 1;
+
+const notesOne = ["G", "G", "G", "G"];
+const notesTwo = ["G", "A", "G", "B"];
+const notesThree = ["G", "G#", "A", "A#"];
+const tempo = [250, 250, 250, 250];
+
+var audioContext = null;
+var isPlaying = false;
+var sourceNode = null;
+var analyser = null;
+var theBuffer = null;
+var DEBUGCANVAS = null;
+var mediaStreamSource = null;
+var detectorElem, 
+	canvasElem,
+	waveCanvas,
+	pitchElem,
+	noteElem,
+	detuneElem,
+	detuneAmount;
+
+function go() {
+	audioContext = new AudioContext();
+	MAX_SIZE = Math.max(4,Math.floor(audioContext.sampleRate/5000));	// corresponds to a 5kHz signal
+
+	detectorElem = document.getElementById( "detector" );
+	canvasElem = document.getElementById( "output" );
+	DEBUGCANVAS = document.getElementById( "waveform" );
+	if (DEBUGCANVAS) {
+		waveCanvas = DEBUGCANVAS.getContext("2d");
+		waveCanvas.strokeStyle = "black";
+		waveCanvas.lineWidth = 1;
+	}
+	pitchElem = document.getElementById( "pitch" );
+	noteElem = document.getElementById( "note" );
+	detuneElem = document.getElementById( "detune" );
+	detuneAmount = document.getElementById( "detune_amt" );
+
+	detectorElem.ondragenter = function () { 
+		this.classList.add("droptarget"); 
+		return false; };
+	detectorElem.ondragleave = function () { this.classList.remove("droptarget"); return false; };
+	detectorElem.ondrop = function (e) {
+  		this.classList.remove("droptarget");
+  		e.preventDefault();
+		theBuffer = null;
+
+	  	var reader = new FileReader();
+	  	reader.onload = function (event) {
+	  		audioContext.decodeAudioData( event.target.result, function(buffer) {
+	    		theBuffer = buffer;
+	  		}, function(){alert("error loading!");} ); 
+
+	  	};
+	  	reader.onerror = function (event) {
+	  		alert("Error: " + reader.error );
+		};
+	  	reader.readAsArrayBuffer(e.dataTransfer.files[0]);
+	  	return false;
+	};
+	// fetch('whistling3.ogg')
+	// 	.then((response) => {
+	// 		if (!response.ok) {
+	// 			throw new Error(`HTTP error, status = ${response.status}`);
+	// 		}
+	// 		return response.arrayBuffer();
+	// 	}).then((buffer) => audioContext.decodeAudioData(buffer)).then((decodedData) => {
+	// 		theBuffer = decodedData;
+	// 	});
+
+}
+function startPitchDetect() {
+    // grab an audio context
+    audioContext = new AudioContext();
+
+    // Attempt to get audio input
+    navigator.mediaDevices.getUserMedia(
+    {
+        "audio": {
+            "mandatory": {
+                "googEchoCancellation": "false",
+                "googAutoGainControl": "false",
+                "googNoiseSuppression": "false",
+                "googHighpassFilter": "false"
+            },
+            "optional": []
+        },
+    }).then((stream) => {
+        // Create an AudioNode from the stream.
+        mediaStreamSource = audioContext.createMediaStreamSource(stream);
+
+	    // Connect it to the destination.
+	    analyser = audioContext.createAnalyser();
+	    analyser.fftSize = 2048;
+	    mediaStreamSource.connect( analyser );
+	    updatePitch();
+    }).catch((err) => {
+        // always check for errors at the end.
+        console.error(`${err.name}: ${err.message}`);
+        alert('Stream generation failed.');
+    });
+}
+
+var rafID = null;
+var tracks = null;
+var buflen = 2048;
+var buf = new Float32Array( buflen );
+
+var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+function noteFromPitch( frequency ) {
+	var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
+	return Math.round( noteNum ) + 69;
+}
+
+function frequencyFromNoteNumber( note ) {
+	return 440 * Math.pow(2,(note-69)/12);
+}
+
+function centsOffFromPitch( frequency, note ) {
+	return Math.floor( 1200 * Math.log( frequency / frequencyFromNoteNumber( note ))/Math.log(2) );
+}
+
+function autoCorrelate( buf, sampleRate ) {
+	// Implements the ACF2+ algorithm
+	var SIZE = buf.length;
+	var rms = 0;
+
+	for (var i=0;i<SIZE;i++) {
+		var val = buf[i];
+		rms += val*val;
+	}
+	rms = Math.sqrt(rms/SIZE);
+	if (rms<0.01) // not enough signal
+		return -1;
+
+	var r1=0, r2=SIZE-1, thres=0.2;
+	for (var i=0; i<SIZE/2; i++)
+		if (Math.abs(buf[i])<thres) { r1=i; break; }
+	for (var i=1; i<SIZE/2; i++)
+		if (Math.abs(buf[SIZE-i])<thres) { r2=SIZE-i; break; }
+
+	buf = buf.slice(r1,r2);
+	SIZE = buf.length;
+
+	var c = new Array(SIZE).fill(0);
+	for (var i=0; i<SIZE; i++)
+		for (var j=0; j<SIZE-i; j++)
+			c[i] = c[i] + buf[j]*buf[j+i];
+
+	var d=0; while (c[d]>c[d+1]) d++;
+	var maxval=-1, maxpos=-1;
+	for (var i=d; i<SIZE; i++) {
+		if (c[i] > maxval) {
+			maxval = c[i];
+			maxpos = i;
+		}
+	}
+	var T0 = maxpos;
+
+	var x1=c[T0-1], x2=c[T0], x3=c[T0+1];
+	a = (x1 + x3 - 2*x2)/2;
+	b = (x3 - x1)/2;
+	if (a) T0 = T0 - b/(2*a);
+
+	return sampleRate/T0;
+}
+
+function updatePitch( time ) {
+	var cycles = new Array;
+	analyser.getFloatTimeDomainData( buf );
+	var ac = autoCorrelate( buf, audioContext.sampleRate );
+	// TODO: Paint confidence meter on canvasElem here.
+
+	if (DEBUGCANVAS) {  // This draws the current waveform, useful for debugging
+		waveCanvas.clearRect(0,0,512,256);
+		waveCanvas.strokeStyle = "red";
+		waveCanvas.beginPath();
+		waveCanvas.moveTo(0,0);
+		waveCanvas.lineTo(0,256);
+		waveCanvas.moveTo(128,0);
+		waveCanvas.lineTo(128,256);
+		waveCanvas.moveTo(256,0);
+		waveCanvas.lineTo(256,256);
+		waveCanvas.moveTo(384,0);
+		waveCanvas.lineTo(384,256);
+		waveCanvas.moveTo(512,0);
+		waveCanvas.lineTo(512,256);
+		waveCanvas.stroke();
+		waveCanvas.strokeStyle = "black";
+		waveCanvas.beginPath();
+		waveCanvas.moveTo(0,buf[0]);
+		for (var i=1;i<512;i++) {
+			waveCanvas.lineTo(i,128+(buf[i]*128));
+		}
+		waveCanvas.stroke();
+	}
+
+ 	if (ac == -1) {
+ 		detectorElem.className = "vague";
+	 	pitchElem.innerText = "--";
+		noteElem.innerText = "-";
+		detuneElem.className = "";
+		detuneAmount.innerText = "--";
+ 	} else {
+	 	detectorElem.className = "confident";
+	 	pitch = ac;
+	 	pitchElem.innerText = Math.round( pitch ) ;
+	 	var note =  noteFromPitch( pitch );
+		noteElem.innerHTML = noteStrings[note%12];
+		var detune = centsOffFromPitch( pitch, note );
+		if (detune == 0 ) {
+			detuneElem.className = "";
+			detuneAmount.innerHTML = "--";
+		} else {
+			if (detune < 0)
+				detuneElem.className = "flat";
+			else
+				detuneElem.className = "sharp";
+			detuneAmount.innerHTML = Math.abs( detune );
+		}
+	}
+
+	if (!window.requestAnimationFrame)
+		window.requestAnimationFrame = window.webkitRequestAnimationFrame;
+	rafID = window.requestAnimationFrame( updatePitch );
+  
+  function playNote(noteTaken, time)
+  {
+    if (noteStrings[note%12] == noteTaken && startTime == 0)
+    {
+      startTime = Date.now();
+    }
+  if (noteStrings[note%12] == noteTaken && Date.now() - startTime >= time)
+    {
+      startTime = 0;
+      // console.log("ALOOO");
+      return true;
+    }
+  else if (noteStrings[note%12] != noteTaken && startTime > 0)
+    {
+      startTime = 0;
+      return false;
+    }
+  }
+	
+  //notePlayed = playNote("C", 50);
+  if(window.location.href.split("#") == "level2"){
+	  notes = notesTwo;
+	  levl = 2;
+  } else if(window.location.href.split("#") == "level3"){
+	  notes = notesThree;
+	  levl = 3;
+  } else {
+	  notes = notesOne;
+	levl = 1;
+  }
+  
+  currentNote += levelMap(notes, tempo, currentNote);
+  
+  function levelMap(notes, tempo, currentNote)
+  {
+    if (playNote(notes[currentNote], tempo[currentNote]))
+        {
+        console.log(currentNote);
+        return 1;
+        }
+    else return 0;
+  }
+  if(currentNote > notes.length-1){
+  	if(levl == getCookie("level")){
+		document.cookie = "level="+(levl+1)+";";
+		console.log(document.cookie);
+	}
+	  window.location.href = "/";
+  }
+	function getCookie(cname) {
+	  let name = cname + "=";
+	  let decodedCookie = decodeURIComponent(document.cookie);
+	  let ca = decodedCookie.split(';');
+	  for(let i = 0; i <ca.length; i++) {
+	    let c = ca[i];
+	    while (c.charAt(0) == ' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+	}
+}
+
+
+  
+  
+</script>
   );
 }
