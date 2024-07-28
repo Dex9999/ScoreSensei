@@ -65,11 +65,12 @@ export default function Page() {
 
   return (
     <>
-      <style jsx>{`
-        // Styles here...
-      `}</style>
-      <DynamicHome startLevel={startLevel} />
-      <DynamicGame startPitchDetect={startPitchDetect} />
+      <Suspense fallback={<div>Loading...</div>}>
+      <div>
+        <Home startLevel={startLevel} />
+        <Game startPitchDetect={startPitchDetect} />
+      </div>
+    </Suspense>
     </>
   );
 }
