@@ -12,7 +12,7 @@ export default function Home() {
       if (!level) {
         console.log("set");
         document.cookie = "level=1;";
-        level = 1;
+        level = "1";
       }
       document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
 
