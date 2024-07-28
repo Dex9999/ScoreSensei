@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      div id="home">
+      <div id="home">
 <!--     <img class="wlcm" src="/images/scoresensei.png" width="50" height="50" /> -->
     <h1 class="ttl" style="margin-top: 100px">Welcome to Score Sensei!</h1>
     <div id="app"></div>
