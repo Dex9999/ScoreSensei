@@ -1,113 +1,63 @@
-"use client";
+// page.js
 
 import { useEffect } from "react";
-import Image from "next/image";
-import './globals.css';
-import { load } from './utils/load';
-import { startLevel, home, startPitchDetect } from './utils/game';
+import { useRouter } from "next/router";
+import Home from "../components/Home";
+import Game from "../components/Game";
+import { getCookie, setLevel } from "../utils";
+import { updatePitch } from "../pitchDetection";
 
-export default function Home() {
+export default function Page() {
+  const router = useRouter();
+
   useEffect(() => {
-    load();
-  }, []);
+    const handleRouteChange = (url) => {
+      const level = url.split("/").pop();
+      if (level) {
+        startLevel(parseInt(level));
+      }
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
+  async function startLevel(lvl) {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("game").style.display = "block";
+    document.getElementById("image").src = `https://scoresensei.vercel.app/public/${lvl === 1 ? "1-1" : lvl}.png`;
+    // Initialize pitch detection or other level-specific logic
+  }
+
+  async function startPitchDetect() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mediaStreamSource = audioContext.createMediaStreamSource(stream);
+    mediaStreamSource.connect(analyser);
+
+    const detectorElem = document.getElementById("detector");
+    const pitchElem = document.getElementById("pitch");
+    const noteElem = document.getElementById("note");
+    const detuneElem = document.getElementById("detune");
+    const detuneAmount = document.getElementById("detune_amt");
+    const waveCanvas = document.getElementById("waveform")?.getContext("2d");
+
+    updatePitch(analyser, audioContext, detectorElem, pitchElem, noteElem, detuneElem, detuneAmount, waveCanvas);
+  }
 
   return (
     <>
       <style jsx>{`
-        .button {
-          filter: drop-shadow(10px 10px 10px #0f0f4f);
-        }
-
-        .wlcm {
-          transform: translate(-230px, 80px);
-        }
-
-        .ttl {
-          transform: translate(30px, 0px);
-        }
-
-        .modern-button {
-          background-color: white;
-          color: black;
-          border: 2px solid black;
-          padding: 10px 20px;
-          font-size: 16px;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background-color 0.3s, color 0.3s, transform 0.3s;
-        }
-
-        .modern-button:hover {
-          background-color: black;
-          color: white;
-          transform: scale(1.05);
-        }
-
-        .modern-button:active {
-          transform: scale(1);
-        }
+        // Styles here...
       `}</style>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div id="home">
-          <h1 className="ttl" style={{ marginTop: "100px" }}>Welcome to Score Sensei!</h1>
-          <div id="app"></div>
-          <h1>Level One</h1>
-          <a id="1" href="#level1" onClick={() => startLevel(1)}>
-            <img
-              className="button"
-              src="/playbutton.png"
-              width="150"
-              height="150"
-              id="1"
-              alt="Play Button"
-            />
-          </a>
-          <h1 id="1">The Basics</h1>
-          <br />
-          <h1>Level Two</h1>
-          <a id="2" href="#level2" onClick={() => startLevel(2)}>
-            <img
-              className="button"
-              src="/playbutton.png"
-              width="150"
-              height="150"
-              id="1"
-              alt="Play Button"
-            />
-          </a>
-          <h1 id="2">New Notes</h1>
-          <br />
-          <h1>Level Three</h1>
-          <a id="3" href="#level3" onClick={() => startLevel(3)}>
-            <img
-              className="button"
-              src="/playbutton.png"
-              width="150"
-              height="150"
-              id="1"
-              alt="Play Button"
-            />
-          </a>
-          <h1 id="3">Sharp Notes</h1>
-        </div>
-
-        <div id="game" style={{ display: "none" }}>
-          <div className="home" style={{ marginTop: "100px" }}>
-            <a href="/">
-              <img src="https://scoresensei.vercel.app/public/scoresensei.png" alt="Logo" style={{ width: "70px", height: "70px" }} className="center" />
-            </a>
-          </div>
-          <p><button onClick={startPitchDetect} className="modern-button">Start</button></p>
-          <div id="detector" className="vague">
-            <div className="pitch" style={{ display: "none" }}><span id="pitch"></span></div>
-            <p>Your Note:</p>
-            <div className="note"><span id="note"></span></div>   
-            <canvas id="output" width="300" height="42"></canvas>
-            <div id="detune" style={{ display: "none" }}><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
-          </div>
-          <img src="" id="image" alt="Detector" />
-        </div>
-      </main>
+      <Home startLevel={startLevel} />
+      <Game startPitchDetect={startPitchDetect} />
     </>
   );
 }
