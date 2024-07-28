@@ -17,23 +17,23 @@ export default function Home() {
       document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
 
       document.querySelectorAll("h1").forEach((element) => {
-        if (element.id < level && element.id != 0) {
+        if (element.id < level && element.id != "0") {
           element.innerText += " Completed";
           element.style.color = "#2df412";
         }
       });
 
       document.querySelectorAll("a").forEach((element) => {
-        if (element.id > level && element.id != 0) {
+        if (element.id > level && element.id != "0") {
           element.href = "#";
           element.onclick = null;
         }
       });
 
       document.querySelectorAll("img").forEach((element) => {
-        if (element.id < level && element.id != 0) {
+        if (element.id < level && element.id != "0") {
           element.src = "/images/completebutton.png";
-        } else if (element.id > level && element.id != 0) {
+        } else if (element.id > level && element.id != "0") {
           element.src = "/images/redbutton.png";
         }
       });
