@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import Link from "next/link";
 import { getCookie, setLevel, updateElementsBasedOnLevel } from "../utils";
