@@ -1,28 +1,33 @@
-"use client";
-
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import Home from "./components/Home";
 import Game from "./components/Game";
 import { getCookie, setLevel } from "./utils";
 import { updatePitch } from "./pitchDetection";
 
+// Dynamically import components with no SSR
+const DynamicHome = dynamic(() => import("../components/Home"), { ssr: false });
+const DynamicGame = dynamic(() => import("../components/Game"), { ssr: false });
+
 export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = (url) => {
-      const level = url.split("/").pop();
-      if (level) {
-        startLevel(parseInt(level));
-      }
-    };
+    if (typeof window !== "undefined") {
+      const handleRouteChange = (url) => {
+        const level = url.split("/").pop();
+        if (level) {
+          startLevel(parseInt(level));
+        }
+      };
 
-    router.events.on("routeChangeComplete", handleRouteChange);
+      router.events.on("routeChangeComplete", handleRouteChange);
 
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
+      return () => {
+        router.events.off("routeChangeComplete", handleRouteChange);
+      };
+    }
   }, [router.events]);
 
   async function startLevel(lvl) {
@@ -56,8 +61,8 @@ export default function Page() {
       <style jsx>{`
         // Styles here...
       `}</style>
-      <Home startLevel={startLevel} />
-      <Game startPitchDetect={startPitchDetect} />
+      <DynamicHome startLevel={startLevel} />
+      <DynamicGame startPitchDetect={startPitchDetect} />
     </>
   );
 }
