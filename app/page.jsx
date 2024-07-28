@@ -3,7 +3,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import '../styles/globals.css'
+import 'globals.css'
 
 
 export default function Home() {
