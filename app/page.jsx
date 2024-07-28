@@ -17,25 +17,25 @@ export default function Page() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  useEffect(() => {
-    const level = pathname.split("/").pop();
-    if (level) {
-      startLevel(parseInt(level));
-    }
+  // useEffect(() => {
+  //   const level = pathname.split("/").pop();
+  //   if (level) {
+  //     startLevel(parseInt(level));
+  //   }
 
-    const handleRouteChange = () => {
-      const newLevel = pathname.split("/").pop();
-      if (newLevel) {
-        startLevel(parseInt(newLevel));
-      }
-    };
+  //   const handleRouteChange = () => {
+  //     const newLevel = pathname.split("/").pop();
+  //     if (newLevel) {
+  //       startLevel(parseInt(newLevel));
+  //     }
+  //   };
 
-    router.events.on("routeChangeComplete", handleRouteChange);
+  //   router.events.on("routeChangeComplete", handleRouteChange);
 
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [pathname, router]);
+  //   return () => {
+  //     router.events.off("routeChangeComplete", handleRouteChange);
+  //   };
+  // }, [pathname, router]);
 
   async function startLevel(lvl) {
     document.getElementById("home").style.display = "none";
