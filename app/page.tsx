@@ -9,10 +9,10 @@ export default function Home() {
           <div id="app"></div>
         <h1>Level One</h1>
         <h1 id="1">The Basics</h1>
-        <br>
+        <br />
         <h1>Level Two</h1>
         <h1 id="2">New Notes</h1>
-        <br>
+        <br />
         <h1>Level Three</h1>
         <h1 id="3">Sharp Notes</h1>
         </>
