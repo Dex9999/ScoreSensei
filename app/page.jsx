@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import Home from "../components/Home";
-import Game from "../components/Game";
-import { getCookie, setLevel } from "../utils";
-import { updatePitch } from "../pitchDetection";
+import Home from "./components/Home";
+import Game from "./components/Game";
+import { getCookie, setLevel } from "./utils";
+import { updatePitch } from "./pitchDetection";
 
 export default function Page() {
   const router = useRouter();
