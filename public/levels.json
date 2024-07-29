@@ -1,0 +1,12 @@
+[
+    { "id": "1", "title": "The Basics", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]},
+    { "id": "2", "title": "New Notes", "notes": ["G", "A", "G", "B"], "tempo": [250, 250, 250, 250]},
+    { "id": "3", "title": "Sharp Notes", "notes": ["G", "G#", "A", "A#"], "tempo": [250, 250, 250, 250]},
+    { "id": "4", "title": "Level 4", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]},
+    { "id": "5", "title": "Level 5", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]},
+    { "id": "6", "title": "Level 6", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]},
+    { "id": "7", "title": "Level 7", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]},
+    { "id": "8", "title": "Level 8", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]},
+    { "id": "9", "title": "Level 9", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]},
+    { "id": "10", "title": "Level 10", "notes": ["G", "G", "G", "G"], "tempo": [250, 250, 250, 250]}
+]

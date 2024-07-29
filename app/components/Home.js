@@ -1,36 +1,41 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getCookie, setLevel, updateElementsBasedOnLevel } from "../utils";
+import levelsData from "../../public/levels.json";
 
-export default function Home({ startLevel }) {
+
+export default function Home() {
+  const [levels, setLevels] = useState([]);
+
   useEffect(() => {
     let level = getCookie("level");
     if (!level) {
       setLevel(1);
       level = "1";
     }
-    document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
     updateElementsBasedOnLevel(level);
+
+    setLevels(levelsData);
   }, []);
 
   return (
     <div id="home">
-      <h1 className="ttl" style={{ marginTop: "100px" }}>Welcome to Score Sensei!</h1>
+      <h1 className="ttl" style={{ marginTop: "100px", fontSize: "6vw"}}>Welcome to Score Sensei!</h1>
       <div id="app"></div>
-      <Level id="1" startLevel={startLevel} title="The Basics" />
-      <Level id="2" startLevel={startLevel} title="New Notes" />
-      <Level id="3" startLevel={startLevel} title="Sharp Notes" />
+      {levels.map(level => (
+        <Level key={level.id} id={level.id} title={level.title} />
+      ))}
     </div>
   );
 }
 
-function Level({ id, startLevel, title }) {
+function Level({ id, title }) {
   return (
     <>
       <h1>Level {id}</h1>
-      <Link href={`/level/${id}`} onClick={() => startLevel(id)}>
+      <Link href={`/level/${id}`}>
         <img
           className="button"
           src="/playbutton.png"

@@ -20,23 +20,23 @@ export function setLevel(level) {
 
 export function updateElementsBasedOnLevel(level) {
   document.querySelectorAll("h1").forEach((element) => {
-    if (element.id < level && element.id !== "0") {
+    if (element.id < level && element.id && !element.innerText.includes("Completed")) {
       element.innerText += " Completed";
       element.style.color = "#2df412";
     }
   });
 
   document.querySelectorAll("a").forEach((element) => {
-    if (element.id > level && element.id !== "0") {
+    if (element.id > level && element.id) {
       element.href = "#";
       element.onclick = null;
     }
   });
 
   document.querySelectorAll("img").forEach((element) => {
-    if (element.id < level && element.id !== "0") {
+    if (element.id < level && element.id) {
       element.src = "/completebutton.png";
-    } else if (element.id > level && element.id !== "0") {
+    } else if (element.id > level && element.id) {
       element.src = "/redbutton.png";
     }
   });

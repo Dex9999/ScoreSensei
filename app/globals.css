@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -15,13 +11,13 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-/* styles/globals.css */
+
 body {
   font-family: system-ui;
   background: #1cb0f6;
   color: white;
   text-align: center;
-  transform: translate(0px, -75px);
+  /* transform: translate(0px, -75px); */
 }
 
 .button {
@@ -57,3 +53,13 @@ body {
   transform: scale(1);
 }
 
+.logo-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000; /* Ensure it is on top of other elements */
+}
+
+.logo-container a {
+  display: inline-block;
+}
